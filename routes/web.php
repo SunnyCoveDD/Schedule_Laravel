@@ -22,7 +22,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/', [UserController::class, 'mainView'])->name('/');
+Route::get('/', [PairsController::class, 'mainView'])->name('/');
 
 Route::get('/login', [UserController::class, 'login'])->name('login');
 Route::post('/login', [UserController::class, 'loginPost']);
@@ -44,3 +44,9 @@ Route::post('/addsub', [SubjectsController::class, 'addSubjectsPost']);
 
 Route::get('/addpairs', [PairsController::class, 'addPairs'])->name('add_pairs');
 Route::post('/addpairs', [PairsController::class, 'addPairsPost']);
+
+Route::get('/studentslist', [UserController::class, 'studentList'])->name('student_list');
+Route::get('/teacherlist', [UserController::class, 'teacherList'])->name('teacher_list');
+
+Route::get('/deleteUser{user}', [UserController::class, 'deleteUser'])->name('delete_user');
+Route::post('/deleteUser{user}', [UserController::class, 'deleteUserPost']);

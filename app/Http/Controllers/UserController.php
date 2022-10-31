@@ -11,11 +11,6 @@ use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
-    public function mainView()
-    {
-        return view('main.main');
-    }
-
     public function login()
     {
         return view('users.login');
@@ -68,5 +63,30 @@ class UserController extends Controller
         $request->merge(['password' => Hash::make($request->password)]);
         User::create($request->all());
         return redirect()->route('admin')->with(['success' => 'Пользователь зарегистрирован']);
+    }
+
+    public function studentList()
+    {
+        $students = User::where('role_id', 2)->get();
+        return view('users.students_list', compact('students'));
+    }
+    public function teacherList()
+    {
+        $teachers = User::whereBetween('role_id', [3, 4])->get();
+        return view('users.teacher_list', compact('teachers'));
+    }
+
+    public function deleteUser(User $user)
+    {
+        if(Auth::user()->role_id == 1){
+            return view('users.delete_user', compact('user'));
+        }
+        return redirect()->route('/');
+    }
+
+    public function deleteUserPost(User $user)
+    {
+        $user->delete();
+        return redirect()->route('admin');
     }
 }

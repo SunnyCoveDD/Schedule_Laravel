@@ -9,59 +9,75 @@
                 <form method="post">
                     @csrf
                     <div class="mb-3">
-                        <label class="form-label mb-2" for="nameInput">ФИО</label>
-                        <input class="form-control @error('name') is-invalid @enderror" id="loginInput" name="name" type="text">
-                        @error('name')
-                        <div id="invalidName" class="invalid-feedback">Вы не указали ФИО</div>
-                        @enderror
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label mb-2" for="orderStatus">Тип пользователя</label>
-                        <select id="orderStatus" name="role_id" class="form-select @error('category_id') is-invalid @enderror" aria-label="Default select example">
-                            <option selected>Выберите тип пользователя</option>
-{{--                            @foreach($roles as $role)--}}
-{{--                                <option value="{{$role -> id}}">{{$role -> name}}</option>--}}
-{{--                            @endforeach--}}
+                        <label class="form-label mb-2" for="number">Номер пары</label>
+                        <select id="number" name="number" class="form-select @error('number') is-invalid @enderror" aria-label="Default select example">
+                            <option selected>Выберите номер пары</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
                         </select>
-                        @error('category_id')
-                        <div id="invalidNews" class="invalid-feedback">
-                            {{$message}}
-                        </div>
+                        @error('number')
+                        <div id="invalidName" class="invalid-feedback">Вы не указали номер пары</div>
                         @enderror
                     </div>
                     <div class="mb-3">
-                        <label class="form-label mb-2" for="orderStatus">К какой группе принадлжит пользователь (Если студент)</label>
-                        <select id="orderStatus" name="group_id" class="form-select @error('category_id') is-invalid @enderror" aria-label="Default select example">
+                        <label class="form-label mb-2" for="group">Группа</label>
+                        <select id="group" name="group_id" class="form-select @error('group_id') is-invalid @enderror" aria-label="Default select example">
                             <option selected>Выберите группу</option>
-{{--                            @foreach($groups as $group)--}}
-{{--                                <option value="{{$group->id}}">{{$group->name}}</option>--}}
-{{--                            @endforeach--}}
+                            @foreach($groups as $group)
+                                <option value="{{$group->id}}">{{$group->name}}</option>
+                            @endforeach
                         </select>
                         @error('group_id')
-                        <div id="invalidNews" class="invalid-feedback">
-                            {{$message}}
-                        </div>
+                        <div id="invalidName" class="invalid-feedback">Вы не выбрали пары</div>
                         @enderror
                     </div>
                     <div class="mb-3">
-                        <label class="form-label mb-2" for="loginInput">Логин</label>
-                        <input class="form-control @error('login') is-invalid @enderror" id="loginInput" name="login" type="text">
-                        @error('login')
-                        <div id="invalidLogin" class="invalid-feedback">Вы не указали логин</div>
+                        <label class="form-label mb-2" for="subject">Предмет</label>
+                        <select id="subject" name="subject_id" class="form-select @error('number') is-invalid @enderror" aria-label="Default select example">
+                            <option selected>Выберите предмет</option>
+                            @foreach($subjects as $subject)
+                                <option value="{{$subject->id}}">{{$subject->name}}</option>
+                            @endforeach
+                        </select>
+                        @error('subject_id')
+                        <div id="invalidName" class="invalid-feedback">Вы не выбрали предмет</div>
                         @enderror
                     </div>
                     <div class="mb-3">
-                        <label class="form-label mb-2" for="Password">Пароль</label>
-                        <input class="form-control @error('password') is-invalid @enderror" id="Password" name="password" type="password">
-                        @error('password')
-                        <div id="invalidPassword" class="invalid-feedback">Вы не указали пароль</div>
+                        <label class="form-label mb-2" for="user">Преподаватель</label>
+                        <select id="user" name="user_id" class="form-select @error('number') is-invalid @enderror" aria-label="Default select example">
+                            <option selected>Выберите преподавателя</option>
+                            @foreach($users as $user)
+                                <option value="{{$user->id}}">{{$user->name}}</option>
+                            @endforeach
+                        </select>
+                        @error('user_id')
+                        <div id="invalidName" class="invalid-feedback">Вы не выбрали преподавателя</div>
                         @enderror
                     </div>
                     <div class="mb-3">
-                        <label class="form-label mb-2" for="Password_confirmation">Пароль повторно</label>
-                        <input class="form-control @error('password_confirmation') is-invalid @enderror" id="Password_confirmation" name="password_confirmation" type="password">
-                        @error('password_confirmation')
-                        <div id="invalidPassword_confirmation" class="invalid-feedback">Введите пароль повторно</div>
+                        <label class="form-label mb-2" for="cabinet">Кабинет</label>
+                        <select id="cabinet" name="cabinet_id" class="form-select @error('number') is-invalid @enderror" aria-label="Default select example">
+                            <option selected>Выберите кабинет</option>
+                            @foreach($cabinets as $cabinet)
+                                <option value="{{$cabinet->id}}">{{$cabinet->number}}</option>
+                            @endforeach
+                        </select>
+                        @error('cabinet_id')
+                        <div id="invalidName" class="invalid-feedback">Вы не выбрали кабинет</div>
+                        @enderror
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label mb-2" for="date">Дата</label>
+                        <input type='date' class="form-control @error('date_id') is-invalid @enderror" id="date" name="date_id">
+                        @error('date_id')
+                        <div id="invalidName" class="invalid-feedback">Вы не выбрали дату</div>
                         @enderror
                     </div>
                     <button class="btn btn-success d-block m-auto" type="submit">Добавить расписание</button>

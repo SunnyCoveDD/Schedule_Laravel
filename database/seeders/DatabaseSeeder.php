@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Days;
 use App\Models\Roles;
 use App\Models\User;
 use Illuminate\Database\Seeder;
