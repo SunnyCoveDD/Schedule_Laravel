@@ -33,4 +33,5 @@ class Pairs extends Model
     {
         return $this->hasOne(Cabinets::class, 'id', 'cabinet_id')->first()->number;
     }
+
 }

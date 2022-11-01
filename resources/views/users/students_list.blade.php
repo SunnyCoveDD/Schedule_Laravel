@@ -12,7 +12,7 @@
                         <th scope="col">Студент</th>
                         <th scope="col">Логин</th>
                         <th scope="col">Группа</th>
-                        <th scope="col">Изменение студенты</th>
+                        <th scope="col">Изменение студента</th>
                         <th scope="col">Удаление студента</th>
                     </tr>
                     </thead>
@@ -22,8 +22,8 @@
                             <td>{{$student->name}}</td>
                             <td>{{$student->login}}</td>
                             <td>{{$student->group()}}</td>
-                            <td><a class="link-secondary text-decoration-none" href="#">Изменить студента</a></td>
-                            <td><a class="link-secondary text-decoration-none" href="{{route('delete_user', $student->id)}}">Удалить студента</a></td>
+                            <td><a class="link-secondary text-decoration-none" href="#">Изменить</a></td>
+                            <td><a class="link-secondary text-decoration-none" href="{{route('delete_user', $student->id)}}">Удалить</a></td>
                         </tr>
                     @endforeach
                     </tbody>

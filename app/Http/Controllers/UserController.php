@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Groups;
+use App\Models\Pairs;
 use App\Models\Roles;
 use App\Models\User;
+use DateTime;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -38,7 +40,21 @@ class UserController extends Controller
 
     public function adminView()
     {
-        return view('users.admin');
+        $pairs = Pairs::all();
+        $groups = Groups::all();
+        $date = new DateTime('now');
+        $dateView = $date->format('j F');
+        $group_sel = null;
+        return view('pairs.pairs_list', compact('pairs', 'groups', 'dateView', 'date', 'group_sel'));
+    }
+    public function adminViewPost(Request $request)
+    {
+        $pairs = Pairs::all();
+        $groups = Groups::all();
+        $date = new DateTime('now');
+        $dateView = $date->format('j F');
+        $group_sel = $request->group_id;
+        return view('pairs.pairs_list', compact('pairs', 'groups', 'dateView', 'date', 'group_sel'));
     }
 
     public function registration()

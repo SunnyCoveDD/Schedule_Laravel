@@ -23,12 +23,14 @@ Route::get('/', function () {
 });
 
 Route::get('/', [PairsController::class, 'mainView'])->name('/');
+Route::post('/', [PairsController::class, 'mainViewPost']);
 
 Route::get('/login', [UserController::class, 'login'])->name('login');
 Route::post('/login', [UserController::class, 'loginPost']);
 Route::get('/logout', [UserController::class, 'logout'])->name('logout');
 
 Route::get('/admin', [UserController::class, 'adminView'])->name('admin');
+Route::post('/admin', [UserController::class, 'adminViewPost']);
 
 Route::get('/registration', [UserController::class, 'registration'])->name('reg');
 Route::post('/registration', [UserController::class, 'registrationPost']);
@@ -50,3 +52,11 @@ Route::get('/teacherlist', [UserController::class, 'teacherList'])->name('teache
 
 Route::get('/deleteUser{user}', [UserController::class, 'deleteUser'])->name('delete_user');
 Route::post('/deleteUser{user}', [UserController::class, 'deleteUserPost']);
+
+Route::get('/editPair{pairs}', [PairsController::class, 'editPairs'])->name('edit_pair');
+Route::post('/editPair{pairs}', [PairsController::class, 'editPairsPost']);
+
+Route::get('/deletePair{pairs}', [PairsController::class, 'deletePairs'])->name('delete_pair');
+Route::post('/deletePair{pairs}', [PairsController::class, 'deletePairsPost']);
+
+

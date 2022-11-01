@@ -20,7 +20,7 @@
             <div class="col-6">
                 <ul class="navbar-nav d-flex me-auto ps-2">
                     <li class="nav-item">
-                        <a class="nav-link link-dark" aria-current="page" href="#">Расписание</a>
+                        <a class="nav-link link-dark" aria-current="page" href="{{route('admin')}}">Расписание</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link link-dark" href="{{route('student_list')}}">Студенты</a>
