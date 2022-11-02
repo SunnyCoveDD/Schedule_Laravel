@@ -19,19 +19,15 @@ class PairsController extends Controller
     {
         $pairs = Pairs::all();
         $groups = Groups::all();
-        $date = new DateTime('now');
-        $dateView = $date->format('j F');
         $group_sel = null;
-        return view('main.main', compact('pairs', 'groups', 'dateView', 'date', 'group_sel'));
+        return view('main.main', compact('pairs', 'groups', 'group_sel'));
     }
     public function mainViewPost(Request $request)
     {
         $pairs = Pairs::all();
         $groups = Groups::all();
-        $date = new DateTime('now');
-        $dateView = $date->format('j F');
         $group_sel = $request->group_id;
-        return view('main.main', compact('pairs', 'groups', 'dateView', 'date', 'group_sel'));
+        return view('main.main', compact('pairs', 'groups', 'group_sel'));
     }
     public function addPairs()
     {
@@ -89,14 +85,6 @@ class PairsController extends Controller
 
     public function editPairsPost(Pairs $pairs, Request $request)
     {
-        $request->validate([
-            'number' => 'required',
-            'group_id' => 'required',
-            'subject_id' => 'required',
-            'user_id' => 'required',
-            'cabinet_id' => 'required',
-            'date_id' => 'required',
-        ]);
         $pairs -> number = $request->input('number');
         $pairs -> group_id = $request->input('group_id');
         $pairs -> subject_id = $request->input('subject_id');

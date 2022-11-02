@@ -22,8 +22,8 @@
                             <td>{{$teacher->name}}</td>
                             <td>{{$teacher->login}}</td>
                             <td>{{$teacher->role()}}</td>
-                            <td><a class="link-secondary text-decoration-none" href="#">Изменить заявку</a></td>
-                            <td><a class="link-secondary text-decoration-none" href="#">Удалить заявку</a></td>
+                            <td><a class="link-secondary text-decoration-none" href="{{route('edit_user', $teacher->id)}}">Изменить</a></td>
+                            <td><a class="link-secondary text-decoration-none" href="{{route('delete_user', $teacher->id)}}">Удалить</a></td>
                         </tr>
                     @endforeach
                     </tbody>

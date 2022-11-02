@@ -22,7 +22,7 @@
                             <td>{{$student->name}}</td>
                             <td>{{$student->login}}</td>
                             <td>{{$student->group()}}</td>
-                            <td><a class="link-secondary text-decoration-none" href="#">Изменить</a></td>
+                            <td><a class="link-secondary text-decoration-none" href="{{route('edit_user', $student->id)}}">Изменить</a></td>
                             <td><a class="link-secondary text-decoration-none" href="{{route('delete_user', $student->id)}}">Удалить</a></td>
                         </tr>
                     @endforeach

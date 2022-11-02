@@ -21,7 +21,7 @@
             @csrf
             <div class="mb-3 col-6">
                 <select id="group_name" onchange="this.form.submit()" name="group_id" class="form-select @error('number') is-invalid @enderror" aria-label="Default select example">
-                    <option selected>Выберите группу</option>
+                        <option selected>Выберите группу</option>
                     @foreach($groups as $group)
                         <option value="{{$group->id}}">{{$group->name}}</option>
                     @endforeach
@@ -40,6 +40,7 @@
                     <thead>
                     <tr>
                         <th scope="col">#</th>
+                        <th scope="col">Дата</th>
                         <th scope="col">Предмет</th>
                         <th scope="col">Преподователь</th>
                         <th scope="col">Кабинет</th>
@@ -50,9 +51,10 @@
                     @if($pair->group_id == $group->id)
                     <tr>
                         <th scope="row">{{$pair->number}}</th>
-                        <td>{{$pair->subject()}}</td>
-                        <td>{{$pair->teacher()}}</td>
-                        <td>{{$pair->cabinets()}}</td>
+                        <td class="text-center">{{date('j F', strtotime($pair->date_id))}}</td>
+                        <td class="text-center">{{$pair->subject()}}</td>
+                        <td class="text-center">{{$pair->teacher()}}</td>
+                        <td class="text-center">{{$pair->cabinets()}}</td>
                     </tr>
                     @endif
                     @endforeach

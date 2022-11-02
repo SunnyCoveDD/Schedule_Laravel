@@ -42,19 +42,15 @@ class UserController extends Controller
     {
         $pairs = Pairs::all();
         $groups = Groups::all();
-        $date = new DateTime('now');
-        $dateView = $date->format('j F');
         $group_sel = null;
-        return view('pairs.pairs_list', compact('pairs', 'groups', 'dateView', 'date', 'group_sel'));
+        return view('pairs.pairs_list', compact('pairs', 'groups', 'group_sel'));
     }
     public function adminViewPost(Request $request)
     {
         $pairs = Pairs::all();
         $groups = Groups::all();
-        $date = new DateTime('now');
-        $dateView = $date->format('j F');
         $group_sel = $request->group_id;
-        return view('pairs.pairs_list', compact('pairs', 'groups', 'dateView', 'date', 'group_sel'));
+        return view('pairs.pairs_list', compact('pairs', 'groups', 'group_sel'));
     }
 
     public function registration()
@@ -92,8 +88,37 @@ class UserController extends Controller
         return view('users.teacher_list', compact('teachers'));
     }
 
+    public function editUser(User $user)
+    {
+        $roles = Roles::all();
+        $roleUser = Roles::find($user->role_id);
+        $groups = Groups::all();
+        if(Auth::user()->role_id == 1){
+            if($user->role_id == 2){
+                $groupUser = Groups::find($user->group_id);
+                return view('users.edit_user', compact('user', 'roles', 'groups', 'groupUser', 'roleUser'));
+            }
+            return view('users.edit_user', compact('user', 'roles', 'groups', 'roleUser'));
+        }
+    }
+
+    public function editUserPost(Request $request, User $user)
+    {
+        if($request->role_id != 2)
+        {
+            $request->merge(['group_id' => null]);
+        }
+        $user->name = $request->input('name');
+        $user->login = $request->input('login');
+        $user->group_id = $request->input('group_id');
+        $user->role_id = $request->input('role_id');
+        $user->save();
+        return redirect()->route('admin');
+    }
+
     public function deleteUser(User $user)
     {
+
         if(Auth::user()->role_id == 1){
             return view('users.delete_user', compact('user'));
         }
@@ -102,7 +127,39 @@ class UserController extends Controller
 
     public function deleteUserPost(User $user)
     {
+        $pairs = Pairs::all();
+        foreach($pairs as $pair){
+            if($pair->user_id == $user->id){
+                return back()->with(['errorDelete' => 'У преподавателя есть пары. Для удаления пользователя измените/удалите пары с ним']);
+            }
+        }
         $user->delete();
         return redirect()->route('admin');
+
+    }
+
+    public function mySchedule()
+    {
+        $user = User::all();
+        $pairs = Pairs::all();
+        $groups = Groups::all();
+        $userSel = null;
+        foreach ($user as $us){
+            if($us->id == Auth::id()){
+                $userSel = $us->group_id;
+            }
+        }
+        $myGroups = null;
+        foreach ($groups as $group){
+            if($group->id == $userSel){
+                $myGroups = $group->id;
+            }
+        }
+        return view('users.students_schedule', compact('pairs', 'groups', 'myGroups'));
+    }
+
+    public function noAccess()
+    {
+        return view('noaccess');
     }
 }

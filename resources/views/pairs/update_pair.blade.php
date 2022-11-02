@@ -85,7 +85,10 @@
                         <div id="invalidName" class="invalid-feedback">Вы не выбрали дату</div>
                         @enderror
                     </div>
-                    <button class="btn btn-success d-block m-auto" type="submit">Изменить расписание</button>
+                    <div class="d-flex pt-4">
+                        <a class="link-secondary text-decoration-none ps-5" href="{{route('admin')}}">Отмена операции</a>
+                        <button class="btn btn-success d-block m-auto" type="submit">Изменить</button>
+                    </div>
                 </form>
             </div>
             <div class="col"></div>

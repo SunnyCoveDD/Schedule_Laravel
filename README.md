@@ -67,4 +67,7 @@ The Laravel framework is open-sourced software licensed under the [MIT license](
 
 ## Version
 
-Version 1.0.0 - Вывод расписания 
+Version 1.0.0 - Вывод расписания <br>
+Version 1.0.1 - Изменение расписания <br>
+Version 1.1.0 - Изменение, удаление пользователей. Изменение вывода расписания. Вывод расписания для авторизованного студента.
+

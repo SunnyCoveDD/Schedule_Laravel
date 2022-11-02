@@ -5,6 +5,11 @@
                 <a href="{{route('/')}}"><img width="100px" src="/resources/img/logo.png" alt="Логотип"></a>
                 <ul class="navbar-nav d-flex me-auto">
                     @auth()
+                        @if(Auth::user()->role_id == 2)
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{route('mySchedule')}}">Мое расписание</a>
+                            </li>
+                        @endif
                         @if(Auth::user()->role_id == 1)
                             <li class="nav-item">
                                 <a class="nav-link" href="{{route('admin')}}">Панель администратора</a>
